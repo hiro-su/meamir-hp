@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Container, Grid, Typography } from '@mui/material';
+import FadeInWhenVisible from '@/components/FadeInWhenVisible';
 
 const works = [
   {
@@ -54,69 +55,73 @@ export default function Works() {
   return (
     <Box id="works" sx={{ py: { xs: 8, md: 15 }, bgcolor: '#f9f9f9' }}>
       <Container maxWidth="lg">
-        <Typography variant="h2" sx={{ mb: 2, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}>
-          制作実績
-        </Typography>
+        <FadeInWhenVisible>
+          <Typography variant="h2" sx={{ mb: 2, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}>
+            制作実績
+          </Typography>
 
-        <Typography variant="caption" sx={{ mb: { xs: 4, md: 8 }, color: 'text.secondary', display: 'block' }}>
-          ※弊社代表が取締役CTOを務める株式会社COZOUの実績も含まれます。
-        </Typography>
+          <Typography variant="caption" sx={{ mb: { xs: 4, md: 8 }, color: 'text.secondary', display: 'block' }}>
+            ※弊社代表が取締役CTOを務める株式会社COZOUの実績も含まれます。
+          </Typography>
+        </FadeInWhenVisible>
 
         <Grid container spacing={{ xs: 4, md: 8 }} sx={{ mt: { xs: 2, md: 4 } }}>
           {works.map((work, index) => (
             <Grid item xs={12} md={6} key={index}>
-              <Box
-                sx={{
-                  cursor: 'pointer',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    '& .work-title': { textDecoration: 'underline' },
-                  },
-                }}
-              >
+              <FadeInWhenVisible>
                 <Box
                   sx={{
-                    height: 300,
-                    bgcolor: '#e0e0e0',
-                    mb: 3,
-                    overflow: 'hidden',
-                    position: 'relative',
-                    borderRadius: 1,
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-5px)',
+                      '& .work-title': { textDecoration: 'underline' },
+                    },
                   }}
                 >
                   <Box
-                    component="img"
-                    src={work.image}
-                    alt={work.title}
                     sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease',
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                      },
+                      height: 300,
+                      bgcolor: '#e0e0e0',
+                      mb: 3,
+                      overflow: 'hidden',
+                      position: 'relative',
+                      borderRadius: 1,
                     }}
-                  />
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="h5" className="work-title" sx={{ fontWeight: 500 }}>
-                      {work.title}
+                  >
+                    <Box
+                      component="img"
+                      src={work.image}
+                      alt={work.title}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                        },
+                      }}
+                    />
+                  </Box>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Typography variant="h5" className="work-title" sx={{ fontWeight: 500 }}>
+                        {work.title}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary" sx={{ ml: 2, whiteSpace: 'nowrap' }}>
+                        {work.year}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" color="primary" sx={{ fontWeight: 500 }}>
+                      {work.category}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ ml: 2, whiteSpace: 'nowrap' }}>
-                      {work.year}
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                      {work.description}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" color="primary" sx={{ fontWeight: 500 }}>
-                    {work.category}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                    {work.description}
-                  </Typography>
                 </Box>
-              </Box>
+              </FadeInWhenVisible>
             </Grid>
           ))}
         </Grid>

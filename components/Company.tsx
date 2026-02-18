@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Container, Typography, Grid, Divider } from '@mui/material';
+import FadeInWhenVisible from '@/components/FadeInWhenVisible';
 
 const companyInfo = [
   {
@@ -47,44 +48,48 @@ export default function Company() {
   return (
     <Box id="company" sx={{ py: { xs: 8, md: 15 } }}>
       <Container maxWidth="lg">
-        <Typography
-          variant="h2"
-          sx={{ mb: { xs: 4, md: 8 }, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}
-        >
-          会社概要
-        </Typography>
+        <FadeInWhenVisible>
+          <Typography
+            variant="h2"
+            sx={{ mb: { xs: 4, md: 8 }, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}
+          >
+            会社概要
+          </Typography>
+        </FadeInWhenVisible>
 
         <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
           {companyInfo.map((info, index) => (
-            <Box key={index}>
-              <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)' }} />
-              <Grid container spacing={{ xs: 2, md: 4 }} sx={{ py: { xs: 3, md: 4 }, alignItems: 'flex-start' }}>
-                <Grid item xs={12} sm={3}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 400,
-                      color: 'text.secondary',
-                      fontSize: '0.9rem',
-                      letterSpacing: '0.1em',
-                      pt: { xs: 0, sm: 0.5 },
-                      mb: { xs: 1, sm: 0 },
-                    }}
-                  >
-                    {info.label}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} sm={9}>
-                  {typeof info.value === 'string' ? (
-                    <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, fontWeight: 300 }}>
-                      {info.value}
+            <FadeInWhenVisible key={index}>
+              <Box>
+                <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)' }} />
+                <Grid container spacing={{ xs: 2, md: 4 }} sx={{ py: { xs: 3, md: 4 }, alignItems: 'flex-start' }}>
+                  <Grid item xs={12} sm={3}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 400,
+                        color: 'text.secondary',
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.1em',
+                        pt: { xs: 0, sm: 0.5 },
+                        mb: { xs: 1, sm: 0 },
+                      }}
+                    >
+                      {info.label}
                     </Typography>
-                  ) : (
-                    info.value
-                  )}
+                  </Grid>
+                  <Grid item xs={12} sm={9}>
+                    {typeof info.value === 'string' ? (
+                      <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, fontWeight: 300 }}>
+                        {info.value}
+                      </Typography>
+                    ) : (
+                      info.value
+                    )}
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
+              </Box>
+            </FadeInWhenVisible>
           ))}
           <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)' }} />
         </Box>
