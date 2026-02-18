@@ -1,8 +1,36 @@
 'use client';
 
-import { Box, Container, Typography, Button, TextField, Grid } from '@mui/material';
+import { useState } from 'react';
+import { Box, Container, Typography, Button, TextField, Grid, Alert, Snackbar } from '@mui/material';
 
 export default function Contact() {
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      setOpen(true);
+      form.reset();
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setError(true);
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setError(false);
+  };
+
   return (
     <Box id="contact" sx={{ py: 15 }}>
       <Container maxWidth="md">
@@ -23,6 +51,7 @@ export default function Contact() {
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
         >
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
@@ -94,6 +123,16 @@ export default function Contact() {
             Tokyo, Japan
           </Typography>
         </Box>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            お問い合わせを受け付けました。
+          </Alert>
+        </Snackbar>
+        <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            エラーが発生しました。時間をおいて再度お試しください。
+          </Alert>
+        </Snackbar>
       </Container>
     </Box>
   );
