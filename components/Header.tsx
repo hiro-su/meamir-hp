@@ -12,10 +12,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 
 const navItems = [
@@ -27,8 +25,6 @@ const navItems = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -68,31 +64,35 @@ export default function Header() {
             Meamir
           </Typography>
 
-          {isMobile ? (
-            <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
-              <MenuIcon />
-            </IconButton>
-          ) : (
-            <Box sx={{ display: 'flex', gap: 4 }}>
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  underline="none"
-                  color="text.primary"
-                  sx={{
-                    fontSize: '0.9rem',
-                    fontWeight: 500,
-                    transition: 'opacity 0.2s',
-                    '&:hover': { opacity: 0.6 },
-                    cursor: 'pointer',
-                  }}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </Box>
-          )}
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 4 }}>
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                underline="none"
+                color="text.primary"
+                sx={{
+                  fontSize: '0.9rem',
+                  fontWeight: 500,
+                  transition: 'opacity 0.2s',
+                  '&:hover': { opacity: 0.6 },
+                  cursor: 'pointer',
+                }}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
