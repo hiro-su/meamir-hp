@@ -52,17 +52,17 @@ const works = [
 
 export default function Works() {
   return (
-    <Box id="works" sx={{ py: 15, bgcolor: '#f9f9f9' }}>
+    <Box id="works" sx={{ py: { xs: 8, md: 15 }, bgcolor: '#f9f9f9' }}>
       <Container maxWidth="lg">
-        <Typography variant="h2" sx={{ mb: 2, fontWeight: 300 }}>
+        <Typography variant="h2" sx={{ mb: 2, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}>
           制作実績
         </Typography>
 
-        <Typography variant="caption" sx={{ mb: 8, color: 'text.secondary' }}>
+        <Typography variant="caption" sx={{ mb: { xs: 4, md: 8 }, color: 'text.secondary', display: 'block' }}>
           ※弊社代表が取締役CTOを務める株式会社COZOUの実績も含まれます。
         </Typography>
 
-        <Grid container spacing={8} sx={{ mt: 4 }}>
+        <Grid container spacing={{ xs: 4, md: 8 }} sx={{ mt: { xs: 2, md: 4 } }}>
           {works.map((work, index) => (
             <Grid item xs={12} md={6} key={index}>
               <Box

@@ -32,13 +32,17 @@ export default function Contact() {
   };
 
   return (
-    <Box id="contact" sx={{ py: 15 }}>
+    <Box id="contact" sx={{ py: { xs: 8, md: 15 } }}>
       <Container maxWidth="md">
-        <Box sx={{ textAlign: 'center', mb: 10 }}>
-          <Typography variant="h2" sx={{ mb: 3, fontWeight: 300 }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
+          <Typography variant="h2" sx={{ mb: 3, fontWeight: 300, fontSize: { xs: '2rem', md: '3.75rem' } }}>
             お問い合わせ
           </Typography>
-          <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 300, maxWidth: '600px', mx: 'auto' }}>
+          <Typography
+            variant="h5"
+            color="text.secondary"
+            sx={{ fontWeight: 300, maxWidth: '600px', mx: 'auto', fontSize: { xs: '1rem', md: '1.5rem' } }}
+          >
             新しいプロジェクトのご相談や、創造的なアイデア、協業の機会など、いつでもお待ちしております。
           </Typography>
         </Box>

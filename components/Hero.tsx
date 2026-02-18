@@ -45,6 +45,7 @@ export default function Hero() {
               mb: 4,
               letterSpacing: '0.05em',
               lineHeight: 1.3,
+              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' },
               '& span': { display: 'inline-block' },
             }}
           >
@@ -64,7 +65,7 @@ export default function Hero() {
               color: 'text.secondary',
               mt: 6,
               maxWidth: '600px',
-              fontSize: '1.1rem',
+              fontSize: { xs: '1rem', md: '1.1rem' },
               lineHeight: 2,
               letterSpacing: '0.05em',
               borderLeft: '1px solid #ddd',
