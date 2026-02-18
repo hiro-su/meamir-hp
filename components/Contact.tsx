@@ -4,16 +4,52 @@ import { useState } from 'react';
 import { Box, Container, Typography, Button, TextField, Grid, Alert, Snackbar } from '@mui/material';
 import FadeInWhenVisible from '@/components/FadeInWhenVisible';
 
+type ValidationErrors = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
+
 export default function Contact() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
 
-  // ... (existing state and handlers)
+  const validate = (formData: FormData): boolean => {
+    const errors: ValidationErrors = {};
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    if (!name || name.trim() === '') {
+      errors.name = 'お名前を入力してください。';
+    }
+
+    if (!email || email.trim() === '') {
+      errors.email = 'メールアドレスを入力してください。';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.email = '正しいメールアドレスを入力してください。';
+    }
+
+    if (!message || message.trim() === '') {
+      errors.message = 'メッセージを入力してください。';
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+
+    if (!validate(formData)) {
+      setErrorMessage('入力内容に誤りがあります。確認してください。');
+      setError(true);
+      return;
+    }
 
     try {
       await fetch('/', {
@@ -23,8 +59,10 @@ export default function Contact() {
       });
       setOpen(true);
       form.reset();
+      setValidationErrors({});
     } catch (error) {
       console.error('Form submission error:', error);
+      setErrorMessage('エラーが発生しました。時間をおいて再度お試しください。');
       setError(true);
     }
   };
@@ -74,6 +112,9 @@ export default function Contact() {
                   name="name"
                   label="お名前"
                   variant="standard"
+                  required
+                  error={!!validationErrors.name}
+                  helperText={validationErrors.name}
                   InputProps={{ sx: { fontSize: '1.2rem', py: 1 } }}
                   InputLabelProps={{ sx: { fontSize: '1rem' } }}
                 />
@@ -84,6 +125,9 @@ export default function Contact() {
                   name="email"
                   label="メールアドレス"
                   variant="standard"
+                  required
+                  error={!!validationErrors.email}
+                  helperText={validationErrors.email}
                   InputProps={{ sx: { fontSize: '1.2rem', py: 1 } }}
                   InputLabelProps={{ sx: { fontSize: '1rem' } }}
                 />
@@ -96,6 +140,9 @@ export default function Contact() {
                   multiline
                   rows={4}
                   variant="standard"
+                  required
+                  error={!!validationErrors.message}
+                  helperText={validationErrors.message}
                   InputProps={{ sx: { fontSize: '1.2rem', py: 1 } }}
                   InputLabelProps={{ sx: { fontSize: '1rem' } }}
                 />
@@ -138,7 +185,7 @@ export default function Contact() {
           </Snackbar>
           <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-              エラーが発生しました。時間をおいて再度お試しください。
+              {errorMessage || 'エラーが発生しました。時間をおいて再度お試しください。'}
             </Alert>
           </Snackbar>
         </Container>
