@@ -27,21 +27,37 @@ export default function Services() {
 
         <Box>
           {services.map((service, index) => (
-            <Box key={index}>
-              <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)' }} />
-              <Grid container spacing={4} sx={{ py: 8 }}>
-                <Grid item xs={12} md={4}>
-                  <Typography variant="h4" sx={{ fontWeight: 400 }}>
+            <Box
+              key={index}
+              sx={{
+                position: 'relative',
+                transition: 'all 0.4s ease',
+                '&:hover': {
+                  bgcolor: '#1a1a1a',
+                  color: '#ffffff',
+                  pl: 2,
+                  '& .MuiTypography-root': { color: '#ffffff' },
+                  '& .MuiDivider-root': { borderColor: 'rgba(255,255,255,0.2)' },
+                },
+              }}
+            >
+              <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)', transition: 'border-color 0.3s' }} />
+              <Grid container spacing={4} sx={{ py: 8, alignItems: 'center' }}>
+                <Grid item xs={12} md={3}>
+                  <Typography variant="h4" sx={{ fontWeight: 200, opacity: 0.5, fontFamily: 'var(--font-inter)' }}>
                     {`0${index + 1}`}
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <Typography variant="h4" sx={{ fontWeight: 500, mb: 2 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{ fontWeight: 400, mb: { xs: 2, md: 0 }, fontSize: '1.5rem', letterSpacing: '0.05em' }}
+                  >
                     {service.title}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                  <Typography variant="body1" color="text.secondary">
+                <Grid item xs={12} md={5}>
+                  <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 300, lineHeight: 2 }}>
                     {service.description}
                   </Typography>
                 </Grid>

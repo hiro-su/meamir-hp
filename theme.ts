@@ -20,10 +20,11 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Helvetica Neue", "Arial", sans-serif',
+    fontFamily: 'var(--font-inter), "Helvetica Neue", Arial, sans-serif',
     h1: {
       fontWeight: 200,
       letterSpacing: '-0.03em',
+      fontFamily: 'var(--font-noto-serif), serif',
       fontSize: '5rem',
       '@media (max-width:600px)': {
         fontSize: '3rem',
@@ -32,6 +33,7 @@ const theme = createTheme({
     h2: {
       fontWeight: 200,
       letterSpacing: '-0.02em',
+      fontFamily: 'var(--font-noto-serif), serif',
       fontSize: '3rem',
       // textTransform: 'uppercase',
       marginBottom: '1rem',

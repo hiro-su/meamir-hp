@@ -11,9 +11,14 @@ const companyInfo = [
     label: '代表取締役',
     value: (
       <Box>
-        <Typography variant="body1">杉本 浩史</Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+        <Typography variant="body1" sx={{ fontSize: '1.2rem', fontWeight: 300, mb: 1 }}>
+          杉本 浩史
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
           株式会社COZOUにて取締役CTO、NowDo株式会社にてPM/テックリードを兼任中
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
+          サイボウズ株式会社品質保証部にてキャリアをスタート。その後、サイボウズスタートアップスにて開発を経験し、IIJ（インターネットイニシアティブ）にてインターネット管理、データセンター運用、クラウドサービスの開発リーダーを歴任。30歳にて、Meamirを創業。
         </Typography>
       </Box>
     ),
@@ -50,15 +55,24 @@ export default function Company() {
           {companyInfo.map((info, index) => (
             <Box key={index}>
               <Divider sx={{ borderColor: 'rgba(0,0,0,0.1)' }} />
-              <Grid container spacing={4} sx={{ py: 4, alignItems: 'center' }}>
-                <Grid item xs={12} sm={4}>
-                  <Typography variant="h6" sx={{ fontWeight: 400, color: 'text.secondary' }}>
+              <Grid container spacing={4} sx={{ py: 4, alignItems: 'flex-start' }}>
+                <Grid item xs={12} sm={3}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 400,
+                      color: 'text.secondary',
+                      fontSize: '0.9rem',
+                      letterSpacing: '0.1em',
+                      pt: 0.5,
+                    }}
+                  >
                     {info.label}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={9}>
                   {typeof info.value === 'string' ? (
-                    <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
+                    <Typography variant="body1" sx={{ fontSize: '1.2rem', fontWeight: 300 }}>
                       {info.value}
                     </Typography>
                   ) : (

@@ -15,8 +15,21 @@ export default function Contact() {
           </Typography>
         </Box>
 
-        <Box component="form" noValidate autoComplete="off" name="contact" method="POST" data-netlify="true">
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+        >
           <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+          </p>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={6}>
               <TextField

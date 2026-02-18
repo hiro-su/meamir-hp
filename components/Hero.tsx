@@ -19,24 +19,42 @@ export default function Hero() {
         alignItems: 'flex-start',
         position: 'relative',
         overflow: 'hidden',
-        pt: 10, // Header height offset
+        pt: 10,
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ animation: `${fadeIn} 1s ease-out` }}>
+        <Box sx={{ animation: `${fadeIn} 1.5s ease-out` }}>
+          <Typography
+            variant="caption"
+            sx={{
+              display: 'block',
+              mb: 2,
+              color: 'text.secondary',
+              letterSpacing: '0.2em',
+              transform: 'translateX(4px)',
+              fontFamily: 'var(--font-inter)',
+            }}
+          >
+            EST. 2017
+          </Typography>
           <Typography
             variant="h1"
             component="h1"
             sx={{
               fontWeight: 200,
-              mb: 2,
-              letterSpacing: '-0.02em',
-              lineHeight: 1.1,
+              mb: 4,
+              letterSpacing: '0.05em',
+              lineHeight: 1.3,
+              '& span': { display: 'inline-block' },
             }}
           >
             シンプルであること、
             <br />
-            それが究極の洗練。
+            それが
+            <Box component="span" sx={{ fontStyle: 'italic', fontFamily: 'serif' }}>
+              究極
+            </Box>
+            の洗練。
           </Typography>
           <Typography
             variant="h4"
@@ -44,12 +62,18 @@ export default function Hero() {
             sx={{
               fontWeight: 300,
               color: 'text.secondary',
-              mt: 4,
+              mt: 6,
               maxWidth: '600px',
-              // fontStyle: 'italic', // 日本語ではitalicはあまり使わない
+              fontSize: '1.1rem',
+              lineHeight: 2,
+              letterSpacing: '0.05em',
+              borderLeft: '1px solid #ddd',
+              pl: 3,
             }}
           >
-            デザインと技術を通じて、複雑な課題をクリアにします。
+            デザインと技術を通じて、
+            <br />
+            複雑な課題をクリアにします。
           </Typography>
         </Box>
       </Container>
@@ -58,12 +82,26 @@ export default function Hero() {
       <Box
         sx={{
           position: 'absolute',
-          top: '20%',
+          top: '50%',
           right: '-10%',
-          width: '600px',
-          height: '600px',
+          transform: 'translateY(-50%)',
+          width: '800px',
+          height: '800px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0) 70%)',
+          background: 'radial-gradient(circle, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0) 60%)',
+          zIndex: -1,
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '5%',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          filter: 'blur(80px)',
+          background: 'linear-gradient(45deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 100%)',
           zIndex: -1,
         }}
       />

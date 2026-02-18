@@ -6,7 +6,7 @@ const navItems = [
   { name: '事業内容', href: '#services' },
   { name: '制作実績', href: '#works' },
   { name: '会社概要', href: '#company' },
-  { name: 'コンタクト', href: '#contact' },
+  { name: 'お問い合わせ', href: '#contact' },
 ];
 
 export default function Header() {
@@ -23,7 +23,7 @@ export default function Header() {
     >
       <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
         <Typography variant="h6" component="div" sx={{ fontWeight: 700, letterSpacing: '0.1em' }}>
-          MEAMIR
+          Meamir
         </Typography>
         <Box sx={{ display: 'flex', gap: 4 }}>
           {navItems.map((item) => (
